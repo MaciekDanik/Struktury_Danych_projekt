@@ -4,5 +4,4 @@ int main()
 {
 	std::cout << "Hello World!\n";
 	//dupa
-	tu pisze kod
 }
