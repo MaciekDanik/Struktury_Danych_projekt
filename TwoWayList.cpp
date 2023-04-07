@@ -31,7 +31,7 @@ void TwoWayList::addNodeBack(string title, int rating)
 	}
 }
 
-void TwoWayList::delNode()
+void TwoWayList::delFirstNode()
 {
 	TwoWayListNode* nodePtr;
 

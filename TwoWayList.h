@@ -14,7 +14,7 @@ public:
 	TwoWayList();
 	~TwoWayList();
 	void addNodeBack(string title, int rating);
-	void delNode(); // usuwa element z poczatku
+	void delFirstNode(); // usuwa element z poczatku
 	void display();
 };
 
