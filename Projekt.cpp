@@ -1,7 +1,11 @@
 #include <iostream>
+#include "TwoWayListNode.h"
+#include <string>
+
+using namespace std;
 
 int main()
 {
-	std::cout << "Hello World!\n";
-	//dupa
+	TwoWayListNode POS;
+	cout << POS.getRating();
 }

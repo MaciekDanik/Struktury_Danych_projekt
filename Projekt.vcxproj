@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Projekt.cpp" />
+    <ClCompile Include="TwoWayList.cpp" />
+    <ClCompile Include="TwoWayListNode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TwoWayList.h" />
+    <ClInclude Include="TwoWayListNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
