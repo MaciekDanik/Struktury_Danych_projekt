@@ -1,20 +1,20 @@
 #include <iostream>
-#include "TwoWayListNode.h"
-#include "TwoWayList.h"
+#include "QueueNode.h"
+#include "Queue.h"
 #include <string>
 
 using namespace std;
 
 int main()
 {
-	TwoWayList list;
+	Queue<int> queue;
 
 	for (int i = 1; i <= 11; i++)
 	{
-		list.addNodeBack("a", i);
+		queue.addNodeBack(i);
 	}
 
-	list.display();
-	list.delFirstNode();
-	list.display();
+	queue.display();
+	queue.delFirstNode();
+	queue.display();
 }
