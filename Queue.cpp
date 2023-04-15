@@ -59,11 +59,11 @@ void Queue<T>::display()
 		cout << "Zapisana kolejka: " << endl;
 		while (nodePtr->getNext())
 		{
-			int tmpValue = nodePtr->getValue();
+			T tmpValue = nodePtr->getValue();
 			cout << tmpValue << endl;   //wszystkie poza ostatnim
 			nodePtr = nodePtr->getNext();
 		}
-		int tmpValue = nodePtr->getValue();
+		T tmpValue = nodePtr->getValue();
 		cout << tmpValue << endl;   //ostatni element
 	}
 	cout << endl;
