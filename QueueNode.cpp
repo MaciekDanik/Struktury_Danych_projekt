@@ -3,7 +3,7 @@
 template <class T>
 QueueNode<T>::QueueNode()
 {
-	value = NULL;
+	value = 0;
 }
 template <class T>
 QueueNode<T>::~QueueNode() {}

@@ -12,10 +12,23 @@ private:
 public:
 	TwoWayList();
 	~TwoWayList();
-	void addNode(int Pos, T val);
+	void addNodeFront(T val);
+	void addNodeBack(T val);
 	void delNodeAtPosition(int Pos); // usuwa element z zadanej pozycji
 	void delNodeWithValue(T val);
 	void display();
 };
 
 #endif // !TwoWayList_H
+/*
+Lista jedno kierunkowa
+	dodaj przód ty³
+	usuñ przód ty³
+	wyœwietl
+
+tablica losowych wartoœci
+zapis do struktury
+np. usuniêcia danej wartoœci [pomiar czasu]
+znajdŸ waroœæ
+i mo¿e czas zapisu
+*/
