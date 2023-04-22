@@ -9,14 +9,14 @@ template <class T>
 class Queue
 {
 private:
-	QueueNode<T>* head;
-	QueueNode<T>* tail;
+	QueueNode<T>* head; //wskaŸnik na pierwszy element
+	QueueNode<T>* tail; //wskaŸnik na ostatni element
 public:
-	Queue();
-	~Queue();
-	void addNodeBack(T val);
-	void delFirstNode(); // usuwa element z poczatku
-	void display();
+	Queue(); //konstruktor kolejki
+	~Queue(); //destruktor kolejki
+	void addNodeBack(T val); //dodajê wêze³ na koñcu kolejki
+	void delFirstNode(); // usuwa element z poczatku kolejki
+	void display(); //wyœwietla ca³¹ kolejkê
 };
 
 #endif // !Queue_H

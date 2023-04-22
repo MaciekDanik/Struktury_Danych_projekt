@@ -10,17 +10,17 @@ class QueueNode
 {
 private:
 	T value;
-	QueueNode<T>* next;
-	QueueNode<T>* prev;
+	QueueNode<T>* next; //wskaŸnik na nastêpny element
+	QueueNode<T>* prev; //wskaŸnik na poprzedni element
 public:
-	QueueNode();
-	~QueueNode();
-	void setValue(T val);
-	T getValue();
-	QueueNode<T>* getNext();
-	QueueNode<T>* getPrev();
-	void setNext(QueueNode<T>* nextNode);
-	void setPrev(QueueNode<T>* prevNode);
+	QueueNode(); //konstruktor wêz³a
+	~QueueNode(); //destruktor wêz³a
+	void setValue(T val); //ustawia wartoœæ wêz³a
+	T getValue(); //zwraca wartoœæ wêz³a
+	QueueNode<T>* getNext(); //zwraca nastêpny wêze³
+	QueueNode<T>* getPrev(); //zwraca poprzedni wêze³
+	void setNext(QueueNode<T>* nextNode); //ustawia nastêpny wêze³
+	void setPrev(QueueNode<T>* prevNode); //ustawia poprzedni wêze³
 };
 
 #endif
