@@ -2,10 +2,11 @@
 #define kwota_h_
 #include <iostream>
 using namespace std;
+template <class T>
 class kwota
 {
     public:
-    float liczba;
+    T liczba;
     kwota *nastepna;
    kwota()
 {
