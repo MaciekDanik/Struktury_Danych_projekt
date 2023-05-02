@@ -3,6 +3,7 @@
 #include "kwota.h"
 #include <iostream>
 using namespace std;
+template <class T>
 class lista
 {
     public:
