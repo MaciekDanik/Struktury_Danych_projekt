@@ -1,11 +1,12 @@
 #include <iostream>
 #include "lista.h"
 using namespace std;
-
+template <class T>
 lista::lista()
 {
     pierwsza=nullptr;
 }
+template <class T>
 void lista::wyswietlenie_listy()
 {
     kwota *temp=pierwsza;
@@ -17,11 +18,12 @@ void lista::wyswietlenie_listy()
         pozycja++;
     }
 }
+template <class T>
 void lista::dodanie_kwoty()
 {
     kwota *nowa=new kwota;
     cout<<"Wprowadz kwote na liste"<<endl;
-    float nowosc;
+    T nowosc;
     cin>>nowosc;
     nowa->liczba=nowosc;
     if(pierwsza==nullptr)
@@ -38,6 +40,7 @@ void lista::dodanie_kwoty()
         temp->nastepna=nowa;
     }
 }
+template <class T>
 void lista::usuniecie_kwoty()
 {
     cout<<"Kwote na ktorej pozycji chcesz usunac ?"<<endl;
@@ -78,6 +81,8 @@ void lista::usuniecie_kwoty()
         }
     }
 }
+
+template <class T>
 void lista::wyczeyszczenie_listy()
 {
     kwota* temp=temp->nastepna;
@@ -89,3 +94,6 @@ void lista::wyczeyszczenie_listy()
   }
 
 }
+template class lista<int>;
+template class lista<double>;
+template class lista<float>;
