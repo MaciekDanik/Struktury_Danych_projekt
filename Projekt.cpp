@@ -5,6 +5,9 @@
 #include "TwoWayList.h"
 #include <string>
 #include <ctime>
+#include <cstdlib>
+#include "lista.h"
+#include "kwota.h"
 
 using namespace std;
 
@@ -17,7 +20,7 @@ int main()
 {
 	Queue<int> queue;
 	TwoWayList<float> List;
-
+        lista_jednokierunkowa<float> OneWayList;
 	//for (float i = 1.0; i <= 6.0; i = i + 0.5)
 	//{
 	//	//queue.addNodeBack(i);
