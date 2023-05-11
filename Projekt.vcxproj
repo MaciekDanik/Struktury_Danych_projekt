@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AVLNode.cpp" />
+    <ClCompile Include="AVLTree.cpp" />
+    <ClCompile Include="lista.cpp" />
     <ClCompile Include="Projekt.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="QueueNode.cpp" />
@@ -148,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLNode.h" />
+    <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="kwota.h" />
+    <ClInclude Include="lista.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="TwoWayList.h" />

@@ -33,6 +33,12 @@
     <ClCompile Include="AVLNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lista.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AVLTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QueueNode.h">
@@ -48,6 +54,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AVLNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kwota.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lista.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
