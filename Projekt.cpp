@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include "lista.h"
 #include "kwota.h"
+#include "AVLNode.h"
+#include "AVLTree.h"
 
 using namespace std;
 
