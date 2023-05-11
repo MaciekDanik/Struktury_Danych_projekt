@@ -20,7 +20,7 @@ int main()
 {
 	Queue<int> queue;
 	TwoWayList<float> List;
-        lista_jednokierunkowa<float> OneWayList;
+	lista_jednokierunkowa<float> OneWayList;
 	//for (float i = 1.0; i <= 6.0; i = i + 0.5)
 	//{
 	//	//queue.addNodeBack(i);

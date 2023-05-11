@@ -11,6 +11,8 @@ private:
 	T value;
 	int balanceFactor; //wspó³czynnik równowagi
 public:
+	AVLNode();
+	~AVLNode();
 	void setParent(AVLNode<T>* p); //ustawia ojca
 	void setLeftSon(AVLNode<T>* l); //ustawia lewego syna
 	void setRightSon(AVLNode<T>* r); //ustawia prawego syna
