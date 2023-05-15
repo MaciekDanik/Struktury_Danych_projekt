@@ -2,6 +2,7 @@
 #include <ctime>
 #include <sys/time.h>
 #include <windows.h>
+#include <chrono>
 #include "lista.h"
 
 
@@ -28,7 +29,7 @@ void lista_jednokierunkowa<T>::dodanie_kwoty()
 {
 
     cout<<"Chcesz dodac element na koniec czy poczatek listy?"<<endl;
-    cout<<"1 - pocz¹tek, 2 - koniec, lub pierwszy element"<<endl;
+    cout<<"1 - poczÂ¹tek, 2 - koniec, lub pierwszy element"<<endl;
     int wybur;
     cin>>wybur;
     if(wybur==1)
@@ -43,32 +44,41 @@ void lista_jednokierunkowa<T>::dodanie_kwoty()
     }
     if(wybur==2)
     {
-        kwota<T> *nowa=new kwota<T>;
-        cout<<"Wprowadz kwote na liste"<<endl;
-        T nowosc;
-        cin>>nowosc;
-        nowa->liczba=nowosc;
-        if(pierwsza==nullptr)
+        auto t1=chrono::high_resolution_clock::now();
+        for(int i=0; i<=35000; i++)
         {
-            pierwsza=nowa;
-        }
-        else
-        {
-            kwota<T> *temp=pierwsza;
-            while (temp->nastepna)
+            kwota<T> *nowa=new kwota<T>;
+            //cout<<"Wprowadz kwote na liste"<<endl;
+            T nowosc;
+            nowosc=i;
+            nowa->liczba=nowosc;
+            if(pierwsza==nullptr)
             {
-                temp=temp->nastepna;
+                pierwsza=nowa;
             }
-            temp->nastepna=nowa;
+            else
+            {
+                kwota<T> *temp=pierwsza;
+                while (temp->nastepna)
+                {
+                    temp=temp->nastepna;
+                }
+                temp->nastepna=nowa;
+            }
         }
-    }
+         auto t2=chrono::high_resolution_clock::now();
+        auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+        cout<<"Czas sortowania: "<<time.count()*1e-9<<" sekundy"<<endl;
+     }
 }
 template <class T>
 void lista_jednokierunkowa<T>::usuniecie_kwoty()
 {
+
     cout<<"Kwote na ktorej pozycji chcesz usunac ?"<<endl;
     int pozycja;
     cin>>pozycja;
+    auto t1=chrono::high_resolution_clock::now();
     if(pozycja==1)
     {
         kwota<T> *temp=pierwsza;
@@ -103,18 +113,24 @@ void lista_jednokierunkowa<T>::usuniecie_kwoty()
             delete usuwana;
         }
     }
+    auto t2=chrono::high_resolution_clock::now();
+    auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+    cout<<"Czas usuwania: "<<time.count()*1e-9<<" sekundy"<<endl;
 }
 template <class T>
 void lista_jednokierunkowa<T>::wyczeyszczenie_listy()
 {
-    kwota<T>* temp=temp->nastepna;
+    //kwota<T>* temp=temp->nastepna;
+    auto t1=chrono::high_resolution_clock::now();
   while(pierwsza !=nullptr)
   {
       kwota<T>* tep=pierwsza->nastepna;
       delete pierwsza;
       pierwsza=tep;
   }
-
+   auto t2=chrono::high_resolution_clock::now(); 
+   auto time=chrono::duration_cast<chrono::nanoseconds>(t2-t1);
+   cout<<"Czas usuwania: "<<time.count()*1e-9<<" sekundy"<<endl;
 }
 template class lista_jednokierunkowa<int>;
 template class lista_jednokierunkowa<double>;
