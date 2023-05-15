@@ -44,8 +44,11 @@ void lista_jednokierunkowa<T>::dodanie_kwoty()
     }
     if(wybur==2)
     {
+        cout<<"Ile elementow chcesz dodac, wprowadz liczbe: ..."<<endl;
+        T dec;
+        cin>>dec;
         auto t1=chrono::high_resolution_clock::now();
-        for(int i=0; i<=35000; i++)
+        for(int i=0; i<dec; i++)
         {
             kwota<T> *nowa=new kwota<T>;
             //cout<<"Wprowadz kwote na liste"<<endl;
