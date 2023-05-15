@@ -62,6 +62,31 @@ AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* root)
 }
 
 template<class T>
+void AVLTree<T>::findNode(AVLNode<T>* root, T val)
+{
+	if (root == nullptr)
+	{
+		cout << "Drzewo jest puste." << endl;
+		return;
+	}
+
+	if (val == root)
+	{
+		cout << "Znaleziono wezel o wartosci: " << val << endl;
+	}
+	else if (val < root)
+	{
+		root = root->getLeftSon();
+		findNode(root, val);
+	}
+	else
+	{
+		root = root->getRightSon();
+		findNode(root, val);
+	}
+}
+
+template<class T>
 void AVLTree<T>::singleRightRotation(AVLNode<T>* root, AVLNode<T>* node)
 {
 	AVLNode<T>* tmpSon = node->getRightSon();
