@@ -4,64 +4,6 @@
 using namespace std;
 
 template<class T>
-void AVLTree<T>::printTree(string sp, string sn, AVLNode<T>* v)
-{
-	string s;
-
-	if (v)
-	{
-		s = sp;
-		if (sn == cr)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cr, v->getRightSon());
-
-		s = s.substr(0, sp.length() - 2);
-		cout << s << sn << v->getValue() << ":" << v->getBF() << endl;
-
-		s = sp;
-		if (sn == cl)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cl, v->getLeftSon());
-	}
-}
-
-template<class T>
-AVLNode<T>* AVLTree<T>::minValue(AVLNode<T>* root)
-{
-	if (root == nullptr)
-	{
-		return root;
-	}
-
-	while (root->getLeftSon() != nullptr)
-	{
-		root = root->getLeftSon();
-	}
-
-	return root;
-}
-
-template<class T>
-AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* root)
-{
-	if (root == nullptr)
-	{
-		return root;
-	}
-
-	while (root->getRightSon() != nullptr)
-	{
-		root = root->getRightSon();
-	}
-
-	return root;
-}
-
-template<class T>
 void AVLTree<T>::singleRightRotation(AVLNode<T>* root, AVLNode<T>* node)
 {
 	AVLNode<T>* tmpSon = node->getRightSon();
