@@ -30,7 +30,7 @@ void AVLTree<T>::printTree(string sp, string sn, AVLNode<T>* v)
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::minValue(AVLNode<T>* root)
+AVLNode<T>* AVLTree<T>::minValue()
 {
 	if (root == nullptr)
 	{
@@ -46,7 +46,7 @@ AVLNode<T>* AVLTree<T>::minValue(AVLNode<T>* root)
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* root)
+AVLNode<T>* AVLTree<T>::maxValue()
 {
 	if (root == nullptr)
 	{
@@ -62,7 +62,7 @@ AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* root)
 }
 
 template<class T>
-void AVLTree<T>::findNode(AVLNode<T>* root, T val)
+void AVLTree<T>::findNode(T val)
 {
 	if (root == nullptr)
 	{
@@ -87,7 +87,7 @@ void AVLTree<T>::findNode(AVLNode<T>* root, T val)
 }
 
 template<class T>
-void AVLTree<T>::singleRightRotation(AVLNode<T>* root, AVLNode<T>* node)
+void AVLTree<T>::singleRightRotation(AVLNode<T>* node)
 {
 	AVLNode<T>* tmpSon = node->getRightSon();
 	AVLNode<T>* tmpParent = node->getParent();
