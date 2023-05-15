@@ -29,7 +29,7 @@ void lista_jednokierunkowa<T>::dodanie_kwoty()
 {
 
     cout<<"Chcesz dodac element na koniec czy poczatek listy?"<<endl;
-    cout<<"1 - pocz¹tek, 2 - koniec, lub pierwszy element"<<endl;
+    cout<<"1 - poczÂ¹tek, 2 - koniec, lub pierwszy element"<<endl;
     int wybur;
     cin>>wybur;
     if(wybur==1)
@@ -120,14 +120,17 @@ void lista_jednokierunkowa<T>::usuniecie_kwoty()
 template <class T>
 void lista_jednokierunkowa<T>::wyczeyszczenie_listy()
 {
-    kwota<T>* temp=temp->nastepna;
+    //kwota<T>* temp=temp->nastepna;
+    auto t1=chrono::high_resolution_clock::now();
   while(pierwsza !=nullptr)
   {
       kwota<T>* tep=pierwsza->nastepna;
       delete pierwsza;
       pierwsza=tep;
   }
-
+   auto t2=chrono::high_resolution_clock::now(); 
+   auto time=chrono::duration_cast<chrono::nanoseconds>(t2-t1);
+   cout<<"Czas usuwania: "<<time.count()*1e-9<<" sekundy"<<endl;
 }
 template class lista_jednokierunkowa<int>;
 template class lista_jednokierunkowa<double>;
