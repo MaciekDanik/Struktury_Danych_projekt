@@ -21,6 +21,13 @@ int randomNum(int maxWartosc)
 
 int main()
 {
+	cr = cl = cp = " ";
+	cr[0] = 218;
+	cl[0] = 192;
+	cp[0] = 179;
+	cr[1] = 196;
+	cl[1] = 196;
+
 	Queue<int> queue;
 	TwoWayList<float> List;
 	lista_jednokierunkowa<float> OneWayList;
