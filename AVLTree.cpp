@@ -280,6 +280,99 @@ void AVLTree<T>::double_RL_Rotation(AVLNode<T>* node)
 	NodeC->setBF(0);
 }
 
+template<class T>
+void AVLTree<T>::double_LR_Rotation(AVLNode<T>* node)
+{
+	AVLNode<T>* NodeB = node->getLeftSon();  //pocz¹tkowo lewy syn wêz³a wzglêdem którego obracamy
+	AVLNode<T>* NodeC = NodeB->getRightSon();  //pocz¹tkowo prawy syn wêz³a wzglêdem którego obracamy
+	AVLNode<T>* NodeP = node->getParent();  //pocz¹tkowo ojciec wêz³a wzglêdem którego obracamy
+
+	NodeB->setRightSon(NodeC->getLeftSon());
+	if (NodeB->getRightSon() != nullptr)
+	{
+		NodeB->getRightSon()->setParent(NodeB);
+	}
+	node->setLeftSon(NodeC->getRightSon());
+	if (node->getLeftSon() != nullptr)
+	{
+		node->getLeftSon()->setParent(node);
+	}
+	NodeC->setRightSon(node);
+	NodeC->setLeftSon(NodeB);
+	node->setParent(NodeC);
+	NodeB->setParent(NodeC);
+	NodeC->setParent(NodeP);
+
+	if (NodeP == nullptr)
+	{
+		root = NodeC;
+	}
+	if (NodeP->getLeftSon() == node)
+	{
+		NodeP->setLeftSon(NodeC);
+	}
+	else
+	{
+		NodeP->setRightSon(NodeC);
+	}
+
+	if (NodeC->getBF() == 1)
+	{
+		node->setBF(-1);
+	}
+	else
+	{
+		node->setBF(0);
+	}
+
+	if (NodeC->getBF() == -1)
+	{
+		NodeB->setBF(1);
+	}
+	else
+	{
+		NodeB->setBF(0);
+	}
+
+	NodeC->setBF(0);
+}
+
+template<class T>
+void AVLTree<T>::insertNode(T val)
+{
+	AVLNode<T>* newNode = new AVLNode<T>;
+	AVLNode<T>* tmpNodeA = new AVLNode<T>;
+	AVLNode<T>* tmpNodeB = new AVLNode<T>;
+	newNode->setValue(val);
+
+	///Wstawianie wêz³¹ do drzewea
+	tmpNodeA = root;
+
+	if (tmpNodeA == nullptr)
+	{
+		root = newNode;
+		return;
+	}
+	else
+	{
+		while (true)
+		{
+			if (val < tmpNodeA->getValue());
+			{
+				if (tmpNodeA->getLeftSon() == nullptr)
+				{
+					tmpNodeA->setLeftSon(newNode);
+					break;
+				}
+				tmpNodeA = tmpNodeA->getLeftSon();
+			}
+			else
+			{
+			}
+		}
+	}
+}
+
 template class AVLTree<int>;
 template class AVLTree<double>;
 template class AVLTree<float>;
