@@ -4,30 +4,22 @@
 
 using namespace std;
 
-template<class T>
-void AVLTree<T>::printTree(string sp, string sn, AVLNode<T>* v)
+template <class T>
+AVLTree<T>::AVLTree()
 {
-	string s;
+	root = nullptr;
+}
 
-	if (v)
-	{
-		s = sp;
-		if (sn == cr)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cr, v->getRightSon());
+template<class T>
+AVLTree<T>::~AVLTree()
+{
+	;
+}
 
-		s = s.substr(0, sp.length() - 2);
-		cout << s << sn << v->getValue() << ":" << v->getBF() << endl;
-
-		s = sp;
-		if (sn == cl)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cl, v->getLeftSon());
-	}
+template<class T>
+AVLNode<T>* AVLTree<T>::getRoot()
+{
+	return this->root;
 }
 
 template<class T>
@@ -342,22 +334,22 @@ void AVLTree<T>::insertNode(T val)
 {
 	AVLNode<T>* newNode = new AVLNode<T>;
 	AVLNode<T>* tmpNodeA = new AVLNode<T>;
-	AVLNode<T>* tmpNodeB = new AVLNode<T>;
+	//AVLNode<T>* tmpNodeB = new AVLNode<T>;
 	newNode->setValue(val);
 
 	///Wstawianie wêz³¹ do drzewea
 	tmpNodeA = root;
 
-	if (tmpNodeA == nullptr)
+	if (root == nullptr)
 	{
 		root = newNode;
 		return;
 	}
 	else
 	{
-		while (true)
+		while (1)
 		{
-			if (val < tmpNodeA->getValue());
+			if (val < tmpNodeA->getValue())
 			{
 				if (tmpNodeA->getLeftSon() == nullptr)
 				{
@@ -368,9 +360,20 @@ void AVLTree<T>::insertNode(T val)
 			}
 			else
 			{
+				if (tmpNodeA->getRightSon() == nullptr)
+				{
+					tmpNodeA->setRightSon(newNode);
+					break;
+				}
+				tmpNodeA = tmpNodeA->getRightSon();
 			}
 		}
 	}
+}
+
+template<class T>
+void AVLTree<T>::removeNode(AVLNode<T>* del)
+{
 }
 
 template class AVLTree<int>;
