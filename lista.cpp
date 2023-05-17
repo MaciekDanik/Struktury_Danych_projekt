@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctime>
-#include <sys/time.h>
+#include <time.h>
 #include <windows.h>
 #include <chrono>
 #include "lista.h"
