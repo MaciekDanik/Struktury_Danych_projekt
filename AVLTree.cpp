@@ -1,5 +1,6 @@
 #include "AVLTree.h"
 #include "AVLNode.h"
+#include <iostream>
 
 using namespace std;
 
@@ -30,35 +31,86 @@ void AVLTree<T>::printTree(string sp, string sn, AVLNode<T>* v)
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::minValue()
+AVLNode<T>* AVLTree<T>::minValue(AVLNode<T>* node)
 {
-	if (root == nullptr)
+	if (node == nullptr)
 	{
-		return root;
+		return node;
 	}
 
-	while (root->getLeftSon() != nullptr)
+	while (node->getLeftSon() != nullptr)
 	{
-		root = root->getLeftSon();
+		node = node->getLeftSon();
 	}
 
 	return root;
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::maxValue()
+AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* node)
 {
-	if (root == nullptr)
+	if (node == nullptr)
 	{
-		return root;
+		return node;
 	}
 
-	while (root->getRightSon() != nullptr)
+	while (node->getRightSon() != nullptr)
 	{
-		root = root->getRightSon();
+		node = node->getRightSon();
 	}
 
 	return root;
+}
+
+template<class T>
+AVLNode<T>* AVLTree<T>::Predecesor(AVLNode<T>* node)
+{
+	AVLNode<T>* tmpNode;
+	if (node == nullptr)
+	{
+		return node;
+	}
+
+	if (node->getLeftSon() != nullptr)
+	{
+		return maxValue(node->getLeftSon());
+	}
+	else
+	{
+		tmpNode = node->getParent();
+
+		while (tmpNode != nullptr && node == tmpNode->getLeftSon())
+		{
+			node = tmpNode;
+			tmpNode = tmpNode->getParent();
+		}
+		return tmpNode;
+	}
+}
+
+template<class T>
+AVLNode<T>* AVLTree<T>::Succesor(AVLNode<T>* node)
+{
+	AVLNode<T>* tmpNode;
+	if (node == nullptr)
+	{
+		return node;
+	}
+
+	if (node->getRightSon() != nullptr)
+	{
+		return minValue(node->getRightSon());
+	}
+	else
+	{
+		tmpNode = node->getParent();
+		while (tmpNode != nullptr && node == tmpNode->getRightSon())
+		{
+			node = tmpNode;
+			tmpNode = tmpNode->getParent();
+		}
+		return tmpNode;
+	}
 }
 
 template<class T>
@@ -70,103 +122,164 @@ void AVLTree<T>::findNode(T val)
 		return;
 	}
 
-	if (val == root)
+	if (val == root->getValue())
 	{
 		cout << "Znaleziono wezel o wartosci: " << val << endl;
 	}
-	else if (val < root)
+	else if (val < root->getValue())
 	{
 		root = root->getLeftSon();
-		findNode(root, val);
+		findNode(val);
 	}
 	else
 	{
 		root = root->getRightSon();
-		findNode(root, val);
+		findNode(val);
 	}
 }
 
 template<class T>
 void AVLTree<T>::singleRightRotation(AVLNode<T>* node)
 {
-	AVLNode<T>* tmpSon = node->getRightSon();
-	AVLNode<T>* tmpParent = node->getParent();
+	AVLNode<T>* NodeB = node->getRightSon();
+	AVLNode<T>* NodeP = node->getParent();
 
-	node->setRightSon(tmpSon->getLeftSon());
+	node->setRightSon(NodeB->getLeftSon());
 	if (node->getRightSon() != nullptr)
 	{
 		node->getRightSon()->setParent(node);
 	}
 
-	tmpSon->setLeftSon(node);
-	tmpSon->setParent(tmpParent);
-	node->setParent(tmpSon);
+	NodeB->setLeftSon(node);
+	NodeB->setParent(NodeP);
+	node->setParent(NodeB);
 
-	if (tmpParent == nullptr)
+	if (NodeP == nullptr)
 	{
-		root = tmpSon;
+		root = NodeB;
 	}
 
-	if (tmpParent->getLeftSon() == node)
+	if (NodeP->getLeftSon() == node)
 	{
-		tmpParent->setLeftSon(tmpSon);
+		NodeP->setLeftSon(NodeB);
 	}
 	else
 	{
-		tmpParent->setRightSon(tmpSon);
+		NodeP->setRightSon(NodeB);
 	}
 
-	if (tmpSon->getBF() == -1)
+	if (NodeB->getBF() == -1)
 	{
 		node->setBF(0);
-		tmpSon->setBF(0);
+		NodeB->setBF(0);
 	}
 	else
 	{
 		node->setBF(-1);
-		tmpSon->setBF(1);
+		NodeB->setBF(1);
 	}
 }
 
 template<class T>
 void AVLTree<T>::singleLeftRotation(AVLNode<T>* node)
 {
-	AVLNode<T>* tmpSon = node->getLeftSon();
-	AVLNode<T>* tmpParent = node->getParent();
+	AVLNode<T>* NodeB = node->getLeftSon();
+	AVLNode<T>* NodeP = node->getParent();
 
-	node->setLeftSon(tmpSon->getRightSon());
+	node->setLeftSon(NodeB->getRightSon());
 
 	if (node->getLeftSon() != nullptr)
 	{
 		node->getLeftSon()->setParent(node);
 	}
 
-	tmpSon->setRightSon(node);
-	tmpSon->setParent(tmpParent);
-	node->setParent(tmpSon);
+	NodeB->setRightSon(node);
+	NodeB->setParent(NodeP);
+	node->setParent(NodeB);
 
-	if (tmpParent == nullptr)
+	if (NodeP == nullptr)
 	{
-		root = tmpSon;
+		root = NodeB;
 	}
 
-	if (tmpParent->getLeftSon() == node)
+	if (NodeP->getLeftSon() == node)
 	{
-		tmpParent->setLeftSon(tmpSon);
+		NodeP->setLeftSon(NodeB);
 	}
 	else
 	{
-		tmpParent->setRightSon(tmpSon);
+		NodeP->setRightSon(NodeB);
 	}
 
-	if (tmpSon->getBF() == 1)
+	if (NodeB->getBF() == 1)
 	{
 		node->setBF(0);
-		tmpSon->setBF(0);
+		NodeB->setBF(0);
 	}
 	else
 	{
 		node->setBF(1);
-		tmpSon->setBF(-1);
+		NodeB->setBF(-1);
 	}
 }
+
+template<class T>
+void AVLTree<T>::double_RL_Rotation(AVLNode<T>* node)
+{
+	AVLNode<T>* NodeB = node->getRightSon();  //pocz¹tkowo lewy syn wêz³a wzglêdem którego obracamy
+	AVLNode<T>* NodeC = NodeB->getLeftSon();  //pocz¹tkowo prawy syn wêz³a wzglêdem którego obracamy
+	AVLNode<T>* NodeP = node->getParent();  //pocz¹tkowo ojciec wêz³a wzglêdem którego obracamy
+
+	NodeB->setLeftSon(NodeC->getRightSon());
+	if (NodeB->getLeftSon() != nullptr)
+	{
+		NodeB->getLeftSon()->setParent(NodeB);
+	}
+	node->setRightSon(NodeC->getLeftSon());
+	if (node->getRightSon() != nullptr)
+	{
+		node->getRightSon()->setParent(node);
+	}
+	NodeC->setLeftSon(node);
+	NodeC->setRightSon(NodeB);
+	node->setParent(NodeC);
+	NodeB->setParent(NodeC);
+	NodeC->setParent(NodeP);
+
+	if (NodeP == nullptr)
+	{
+		root = NodeC;
+	}
+	if (NodeP->getLeftSon() == node)
+	{
+		NodeP->setLeftSon(NodeC);
+	}
+	else
+	{
+		NodeP->setRightSon(NodeC);
+	}
+
+	if (NodeC->getBF() == -1)
+	{
+		node->setBF(1);
+	}
+	else
+	{
+		node->setBF(0);
+	}
+
+	if (NodeC->getBF() == 1)
+	{
+		NodeB->setBF(-1);
+	}
+	else
+	{
+		NodeB->setBF(0);
+	}
+
+	NodeC->setBF(0);
+}
+
+template class AVLTree<int>;
+template class AVLTree<double>;
+template class AVLTree<float>;

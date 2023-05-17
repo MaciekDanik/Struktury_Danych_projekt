@@ -20,8 +20,8 @@ public:
 	void double_LR_Rotation(AVLNode<T>* node); //najpierw w prawo a potem w lewo
 
 	void printTree(string sp, string sn, AVLNode<T>* V); // to siê zobaczy
-	AVLNode<T>* minValue(); //zwraca wêze³ o najmniejszej wartoœci
-	AVLNode<T>* maxValue(); //zwraca wêze³ o najwiêkszej wartoœci
+	AVLNode<T>* minValue(AVLNode<T>* node); //zwraca wêze³ o najmniejszej wartoœci
+	AVLNode<T>* maxValue(AVLNode<T>* node); //zwraca wêze³ o najwiêkszej wartoœci
 	AVLNode<T>* Predecesor(AVLNode<T>* node); // zwraca poprzednika wêz³a node
 	AVLNode<T>* Succesor(AVLNode<T>* node); // zwraca nastêpcê wêz³a node
 	void findNode(T val); //szuka wêz³a o zadanej wartoœci val
