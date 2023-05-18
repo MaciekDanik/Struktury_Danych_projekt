@@ -21,7 +21,7 @@ public:
 	void double_RL_Rotation(AVLNode<T>* node); //najpierw rotacja w lewo a potem w prawo
 	void double_LR_Rotation(AVLNode<T>* node); //najpierw w prawo a potem w lewo
 
-	AVLNode<T>* getRoot();
+	AVLNode<T>* getRoot();  // do testow
 	//void printTree(string sp, string sn, AVLNode<T>* v); // to siê zobaczy
 	AVLNode<T>* minValue(AVLNode<T>* node); //zwraca wêze³ o najmniejszej wartoœci
 	AVLNode<T>* maxValue(AVLNode<T>* node); //zwraca wêze³ o najwiêkszej wartoœci
