@@ -242,7 +242,7 @@ void AVLTree<T>::double_RL_Rotation(AVLNode<T>* node)
 	{
 		root = NodeC;
 	}
-	if (NodeP->getLeftSon() == node)
+	else if (NodeP->getLeftSon() == node)
 	{
 		NodeP->setLeftSon(NodeC);
 	}
@@ -299,7 +299,7 @@ void AVLTree<T>::double_LR_Rotation(AVLNode<T>* node)
 	{
 		root = NodeC;
 	}
-	if (NodeP->getLeftSon() == node)
+	else if (NodeP->getLeftSon() == node)
 	{
 		NodeP->setLeftSon(NodeC);
 	}
@@ -334,7 +334,8 @@ void AVLTree<T>::insertNode(T val)
 {
 	AVLNode<T>* newNode = new AVLNode<T>;
 	AVLNode<T>* tmpNodeA = new AVLNode<T>;
-	//AVLNode<T>* tmpNodeB = new AVLNode<T>;
+	AVLNode<T>* tmpNodeB = new AVLNode<T>;
+	bool status = false; //do balansowania drzew
 	newNode->setValue(val);
 
 	///Wstawianie wêz³¹ do drzewea
@@ -349,7 +350,7 @@ void AVLTree<T>::insertNode(T val)
 	{
 		while (1)
 		{
-			if (val < tmpNodeA->getValue())
+			if (val <= tmpNodeA->getValue())
 			{
 				if (tmpNodeA->getLeftSon() == nullptr)
 				{
@@ -366,6 +367,79 @@ void AVLTree<T>::insertNode(T val)
 					break;
 				}
 				tmpNodeA = tmpNodeA->getRightSon();
+			}
+		}
+
+		newNode->setParent(tmpNodeA);
+		///FAZA 2 równowa¿enie
+
+		if (tmpNodeA->getBF() != 0)
+		{
+			tmpNodeA->setBF(0);
+		}
+		else
+		{
+			if (tmpNodeA->getLeftSon() == newNode)
+			{
+				tmpNodeA->setBF(1);
+			}
+			else
+			{
+				tmpNodeA->setBF(-1);
+			}
+
+			tmpNodeB = tmpNodeA->getParent();
+
+			while (tmpNodeB != nullptr)
+			{
+				if (tmpNodeB->getBF() != 0)
+				{
+					status = true;
+					break;
+				}
+				if (tmpNodeB->getLeftSon() == tmpNodeA)
+				{
+					tmpNodeB->setBF(1);
+				}
+				else
+				{
+					tmpNodeB->setBF(-1);
+				}
+				tmpNodeA = tmpNodeB;                 //przejœcie w górê drzewa
+				tmpNodeB = tmpNodeB->getParent();
+			}
+			if (status == true)    // balance factor tmpNodeB = +/-1
+			{
+				if (tmpNodeB->getBF() == 1)
+				{
+					if (tmpNodeB->getRightSon() == tmpNodeA) //jeœli tmpNodeA jest prawym synem tmpNodeB
+					{
+						tmpNodeB->setBF(0);
+					}
+					else if (tmpNodeA->getBF() == -1)
+					{
+						double_LR_Rotation(tmpNodeB);
+					}
+					else
+					{
+						singleLeftRotation(tmpNodeB);
+					}
+				}
+				else
+				{
+					if (tmpNodeB->getLeftSon() == tmpNodeA) //jeœli tmpNodeA jest lewym synem tmpNodeB
+					{
+						tmpNodeB->setBF(0);
+					}
+					else if (tmpNodeA->getBF() == 1)
+					{
+						double_RL_Rotation(tmpNodeB);
+					}
+					else
+					{
+						singleRightRotation(tmpNodeB);
+					}
+				}
 			}
 		}
 	}

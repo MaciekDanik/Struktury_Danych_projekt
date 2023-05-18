@@ -66,6 +66,16 @@ int main()
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
 	drzewo.insertNode(5);
+	drzewo.insertNode(2);
+	drzewo.insertNode(13);
+	drzewo.insertNode(8);
+	drzewo.insertNode(9);
+	drzewo.insertNode(20);
+	drzewo.insertNode(39);
+	drzewo.insertNode(40);
+	drzewo.insertNode(11);
+	drzewo.insertNode(7);
+	system("pause");
 
 	printTree("", "", drzewo.getRoot());
 	//cout << "root: " << drzewo.getRoot()->getValue() << endl;
