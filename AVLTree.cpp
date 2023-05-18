@@ -151,7 +151,7 @@ void AVLTree<T>::singleRightRotation(AVLNode<T>* node)
 		root = NodeB;
 	}
 
-	if (NodeP->getLeftSon() == node)
+	else if (NodeP->getLeftSon() == node)
 	{
 		NodeP->setLeftSon(NodeB);
 	}
@@ -194,7 +194,7 @@ void AVLTree<T>::singleLeftRotation(AVLNode<T>* node)
 		root = NodeB;
 	}
 
-	if (NodeP->getLeftSon() == node)
+	else if (NodeP->getLeftSon() == node)
 	{
 		NodeP->setLeftSon(NodeB);
 	}
@@ -332,16 +332,17 @@ void AVLTree<T>::double_LR_Rotation(AVLNode<T>* node)
 template<class T>
 void AVLTree<T>::insertNode(T val)
 {
-	AVLNode<T>* newNode = new AVLNode<T>;
-	AVLNode<T>* tmpNodeA = new AVLNode<T>;
-	AVLNode<T>* tmpNodeB = new AVLNode<T>;
+	AVLNode<T>* newNode = new AVLNode<T>; //wêze³ wstawiany
+	AVLNode<T>* tmpNodeA = new AVLNode<T>; //wêze³ pomocniczy
+	AVLNode<T>* tmpNodeB = new AVLNode<T>; //wêze³ pomocniczy
 	bool status = false; //do balansowania drzew
-	newNode->setValue(val);
+
+	newNode->setValue(val); //przypisanie wartoœci do nowego wêz³¹
 
 	///Wstawianie wêz³¹ do drzewea
 	tmpNodeA = root;
 
-	if (root == nullptr)
+	if (root == nullptr)  //jeœlil nie ma korzenia to newNode staje siê korzeniem
 	{
 		root = newNode;
 		return;
@@ -350,58 +351,58 @@ void AVLTree<T>::insertNode(T val)
 	{
 		while (1)
 		{
-			if (val <= tmpNodeA->getValue())
+			if (val <= tmpNodeA->getValue())  //jeœli wartoœæ nowego wêz³a jest <= wczeœniejszym
 			{
-				if (tmpNodeA->getLeftSon() == nullptr)
+				if (tmpNodeA->getLeftSon() == nullptr) //nowy wêze³ jest lewym synem jeœli go nie by³o
 				{
 					tmpNodeA->setLeftSon(newNode);
 					break;
 				}
-				tmpNodeA = tmpNodeA->getLeftSon();
+				tmpNodeA = tmpNodeA->getLeftSon(); //podró¿ w lewy-dó³ drzewa
 			}
-			else
+			else   //jeœli wartoœæ nowego wêz³a jest > wczeœniejsze
 			{
-				if (tmpNodeA->getRightSon() == nullptr)
+				if (tmpNodeA->getRightSon() == nullptr)   //nowy wêze³ jest prawym synem jeœli go nie by³o
 				{
 					tmpNodeA->setRightSon(newNode);
 					break;
 				}
-				tmpNodeA = tmpNodeA->getRightSon();
+				tmpNodeA = tmpNodeA->getRightSon(); //podró¿ w prawy-dó³ drzewa
 			}
 		}
 
-		newNode->setParent(tmpNodeA);
+		newNode->setParent(tmpNodeA);   //ojcem nowego wêz³a jest wêze³ o "poziom" wy¿ej
 		///FAZA 2 równowa¿enie
 
-		if (tmpNodeA->getBF() != 0)
+		if (tmpNodeA->getBF() != 0)   //jeœli bf= +/-1 ustawiamy 0, bo mia³ jedngo syna
 		{
 			tmpNodeA->setBF(0);
 		}
 		else
 		{
-			if (tmpNodeA->getLeftSon() == newNode)
+			if (tmpNodeA->getLeftSon() == newNode) //jeœli lewym synem ojca jest nowy wêze³ - lewe poddrzewo d³u¿sze
 			{
 				tmpNodeA->setBF(1);
 			}
-			else
+			else  //w przeciwnym razie prawe poddrzewo jest d³u¿sze
 			{
 				tmpNodeA->setBF(-1);
 			}
 
 			tmpNodeB = tmpNodeA->getParent();
 
-			while (tmpNodeB != nullptr)
+			while (tmpNodeB != nullptr) //dopóki nie dojdziemy do korzenia
 			{
-				if (tmpNodeB->getBF() != 0)
+				if (tmpNodeB->getBF() != 0)//jedno z poddrzew jest d³u¿sze
 				{
 					status = true;
 					break;
 				}
-				if (tmpNodeB->getLeftSon() == tmpNodeA)
+				if (tmpNodeB->getLeftSon() == tmpNodeA)//jeœli NodeA jest lewyn synem NodeB, lewe poddrzewo jest d³u¿sze
 				{
 					tmpNodeB->setBF(1);
 				}
-				else
+				else //jeœli NodeA jest lewyn synem NodeB, prawe poddrzewo jest d³u¿sze
 				{
 					tmpNodeB->setBF(-1);
 				}
