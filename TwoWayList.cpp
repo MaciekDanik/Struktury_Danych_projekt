@@ -34,68 +34,34 @@ void TwoWayList<T>::addNodeFront(T val)
 }
 
 template<class T>
-void TwoWayList<T>::addNodeBack()
+void TwoWayList<T>::addNodeBack(T* tablica)
 {
 	int val1=0;
     cout<<"Ile liczb chesz umiescic na liscie?"<<endl;
     cin>>val1;
-    cout<<"Czy maja byc calkowite czy zmiennoprzecinkowe?"<<endl;
-    cout<<"1. Calkowite"<<endl;
-    cout<<"2. Zmiennoprzecinkowe"<<endl;
-    int wybur;
-    cin>>wybur;
-    if(wybur==1)
+    auto t1=chrono::high_resolution_clock::now();
+    for(int i=0; i<val1; i++)
     {
-        auto t1=chrono::high_resolution_clock::now();
-        for(int i=0; i<val1; i++)
-        {
-            T val=i;
-            TwoWayListNode<T>* newNode = new TwoWayListNode<T>;
-            newNode->setNext(nullptr);
-            newNode->setValue(val);
+        T val=tablica[i];
+        TwoWayListNode<T>* newNode = new TwoWayListNode<T>;
+        newNode->setNext(nullptr);
+        newNode->setValue(val);
 
-            if (!head)
-            {
-                head = newNode;
-                tail = newNode;
-            }
-            else
-            {
-                tail->setNext(newNode);
-                newNode->setPrev(tail);
-                tail = newNode;
-            }
-        }
-        auto t2=chrono::high_resolution_clock::now();
-        auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
-        cout<<"Czas dodawania: "<<time.count()*1e-9<<" sekundy"<<endl;
-    }
-    if(wybur==2)
-    {
-        auto t1=chrono::high_resolution_clock::now();
-        for(float i=0; i<=val1/2; i=i+0.5)
+        if (!head)
         {
-            T val=i;
-            TwoWayListNode<T>* newNode = new TwoWayListNode<T>;
-            newNode->setNext(nullptr);
-            newNode->setValue(val);
-
-            if (!head)
-            {
-                head = newNode;
-                tail = newNode;
-            }
-            else
-            {
-                tail->setNext(newNode);
-                newNode->setPrev(tail);
-                tail = newNode;
-            }
+            head = newNode;
+            tail = newNode;
         }
-        auto t2=chrono::high_resolution_clock::now();
-        auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
-        cout<<"Czas dodawania: "<<time.count()*1e-9<<" sekundy"<<endl;
+        else
+        {
+            tail->setNext(newNode);
+            newNode->setPrev(tail);
+            tail = newNode;
+        }
     }
+    auto t2=chrono::high_resolution_clock::now();
+    auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+    cout<<"Czas dodawania: "<<time.count()*1e-9<<" sekundy"<<endl;
 }
 
 template<class T>
