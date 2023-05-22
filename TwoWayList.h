@@ -14,7 +14,7 @@ public:
 	TwoWayList(); //konstruktor listy
 	~TwoWayList(); //destruktor listy
 	void addNodeFront(T val); //dodaje węzeł na początek listy
-	void addNodeBack(); //dodaje węzeł na koniec listy
+	void addNodeBack(T* tablica); //dodaje węzeł na koniec listy
 	void delNodeAtPosition(int Pos); // usuwa element z zadanej pozycji
 	void delNodeWithValue(T val); //usuwa elemet o danej wartości
 	void display(); //wyświetla listę
