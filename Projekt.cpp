@@ -99,7 +99,7 @@ fstream zmiennoprzecinkowe;
  zmiennoprzecinkowe.open("C:\\Users\\Legion\\Desktop\\zmiennoprzecinkowe.txt", ios::in | ios::out |ios::app);
  string linia1;
  int licznik1=0;
- while(getline(calkowite,linia1))
+ while(getline(zmiennoprzecinkowe,linia1))
  {
     tablica1[licznik1]=stof(linia1);
     licznik1++;
