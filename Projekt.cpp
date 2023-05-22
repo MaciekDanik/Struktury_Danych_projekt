@@ -1,5 +1,7 @@
 #include <iostream>
 #include <chrono>
+#include <fstream>
+#include <sstream>
 #include "QueueNode.h"
 #include "Queue.h"
 #include "TwoWayListNode.h"
@@ -78,6 +80,42 @@ int main()
 	system("pause");
 
 	printTree("", "", drzewo.getRoot());
+//Wczytywanie danych do pomiaru czasu ->	
+ /*TwoWayList<int> czas_int;
+ TwoWayList<float> czas_float;
+ int* tablica=new int[1000000];
+ float* tablica1=new float[1000000];
+ fstream calkowite;
+ calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out |ios::app);
+ string linia;
+ int licznik=0;
+ while(getline(calkowite,linia))
+ {
+    tablica[licznik]=stoi(linia);
+    licznik++;
+ }
+ calkowite.close();
+fstream zmiennoprzecinkowe;
+ zmiennoprzecinkowe.open("C:\\Users\\Legion\\Desktop\\zmiennoprzecinkowe.txt", ios::in | ios::out |ios::app);
+ string linia1;
+ int licznik1=0;
+ while(getline(calkowite,linia1))
+ {
+    tablica1[licznik1]=stof(linia1);
+    licznik1++;
+ }
+ zmiennoprzecinkowe.close();
+
+cout<<"Chcesz pracowac na danych int czy float?"<<endl;
+cout<<"1. int, 2. float"<<endl;
+int wybur;
+cin>>wybur;
+if(wybur==1)
+czas_int.addNodeBack(tablica);
+if(wybur==2)
+czas_float.addNodeBack(tablica1);
+*/	
+	
 	//cout << "root: " << drzewo.getRoot()->getValue() << endl;
 
 	//for (float i = 1.0; i <= 6.0; i = i + 0.5)
