@@ -106,27 +106,27 @@ AVLNode<T>* AVLTree<T>::Succesor(AVLNode<T>* node)
 }
 
 template<class T>
-void AVLTree<T>::findNode(T val)
+AVLNode<T>* AVLTree<T>::findNode(AVLNode<T>* node, T val)
 {
-	if (root == nullptr)
+	AVLNode<T>* tmpNode = node;
+	if (node == nullptr)
 	{
-		cout << "Drzewo jest puste." << endl;
-		return;
+		return nullptr;
 	}
 
-	if (val == root->getValue())
+	if (val == tmpNode->getValue())
 	{
-		cout << "Znaleziono wezel o wartosci: " << val << endl;
+		return tmpNode;
 	}
-	else if (val < root->getValue())
+	else if (val < tmpNode->getValue())
 	{
-		root = root->getLeftSon();
-		findNode(val);
+		tmpNode = tmpNode->getLeftSon();
+		findNode(tmpNode, val);
 	}
 	else
 	{
-		root = root->getRightSon();
-		findNode(val);
+		tmpNode = tmpNode->getRightSon();
+		findNode(tmpNode, val);
 	}
 }
 
@@ -447,8 +447,147 @@ void AVLTree<T>::insertNode(T val)
 }
 
 template<class T>
-void AVLTree<T>::removeNode(AVLNode<T>* del)
+AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 {
+	AVLNode<T>* tmpNode1;
+	AVLNode<T>* tmpNode2;
+	AVLNode<T>* tmpNode3;
+	bool tangeld; // zagnie¿dzenie
+
+	if ((delNode->getLeftSon() != nullptr) && (delNode->getRightSon() != nullptr))
+	{
+		tmpNode1 = removeNode(Predecesor(delNode));
+		tangeld = false;
+	}
+	else
+	{
+		if (delNode->getLeftSon() != nullptr)
+		{
+			tmpNode1 = delNode->getLeftSon();
+			delNode->setLeftSon(nullptr);
+		}
+		else
+		{
+			tmpNode1 = delNode->getRightSon();
+			delNode->setRightSon(nullptr);
+		}
+		delNode->setBF(0);
+		tangeld = true;
+	}
+
+	if (tmpNode1 != nullptr)
+	{
+		tmpNode1->setParent(delNode->getParent());
+		tmpNode1->setLeftSon(delNode->getLeftSon());
+		if (tmpNode1->getLeftSon() != nullptr)
+		{
+			tmpNode1->getLeftSon()->setParent(tmpNode1);
+		}
+		tmpNode1->setRightSon(delNode->getRightSon());
+		if (tmpNode1->getRightSon() != nullptr)
+		{
+			tmpNode1->getRightSon()->setParent(tmpNode1);
+		}
+		tmpNode1->setBF(delNode->getBF());
+	}
+
+	if (delNode->getParent() != nullptr)
+	{
+		if (delNode->getParent()->getLeftSon() == delNode)
+		{
+			delNode->getParent()->setLeftSon(tmpNode1);
+		}
+		else
+		{
+			delNode->getParent()->setRightSon(tmpNode1);
+		}
+	}
+	else
+	{
+		root = tmpNode1;
+	}
+
+	if (tangeld == true)
+	{
+		tmpNode2 = tmpNode1;
+		tmpNode1 = delNode->getParent();
+
+		while (tmpNode1 != nullptr)
+		{
+			if (tmpNode1->getBF() == 0) //przypadek 1
+			{
+				if (tmpNode1->getLeftSon() == tmpNode2)
+				{
+					tmpNode1->setBF(-1);
+				}
+				else
+				{
+					tmpNode1->setBF(1);
+				}
+				break;
+			}
+			else
+			{
+				if (((tmpNode1->getBF() == 1) && (tmpNode1->getLeftSon() == tmpNode2)) || ((tmpNode1->getBF() == -1) && (tmpNode1->getRightSon() == tmpNode2))) //[rzypadek 2
+				{
+					tmpNode1->setBF(0);
+					tmpNode2 = tmpNode1;
+					tmpNode1 = tmpNode1->getParent();
+				}
+				else
+				{
+					if (tmpNode1->getLeftSon() == tmpNode2)
+					{
+						tmpNode3 = tmpNode1->getRightSon();
+					}
+					else
+					{
+						tmpNode3 = tmpNode1->getLeftSon();
+					}
+					if (tmpNode3->getBF() == 0) //prztpadek 3A
+					{
+						if (tmpNode1->getBF() == 1)
+						{
+							singleLeftRotation(tmpNode1);
+						}
+						else
+						{
+							singleRightRotation(tmpNode1);
+						}
+						break;
+					}
+					else if (tmpNode1->getBF() == tmpNode3->getBF())//przyp 3B
+					{
+						if (tmpNode1->getBF() == 1)
+						{
+							singleLeftRotation(tmpNode1);
+						}
+						else
+						{
+							singleRightRotation(tmpNode1);
+						}
+						tmpNode2 = tmpNode3;
+						tmpNode1 = tmpNode3->getParent();
+					}
+					else  //przypadek 3c
+					{
+						if (tmpNode1->getBF() == 1)
+						{
+							singleLeftRotation(tmpNode1);
+						}
+						else
+						{
+							singleRightRotation(tmpNode1);
+						}
+						tmpNode2 = tmpNode1->getParent();
+						tmpNode1 = tmpNode2->getParent();
+					}
+				}
+			}
+		}
+	}
+
+	return delNode;
 }
 
 template class AVLTree<int>;
