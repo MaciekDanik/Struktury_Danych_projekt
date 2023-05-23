@@ -58,7 +58,7 @@ int main()
 
 	int* tablica = new int[1000000];
 	float* tablica1 = new float[1000000];
-	const int DataQuantity = 100;
+	const int DataQuantity = 30; //iloœæ danych
 
 	fstream calkowite;
 	calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out | ios::app);
@@ -81,10 +81,20 @@ int main()
 	}
 	zmiennoprzecinkowe.close();
 
+	auto t1 = chrono::high_resolution_clock::now();
+	///_________________________________________________________________________________
 	for (int i = 0; i < DataQuantity; i++)
 	{
 		//tutaj dodawanie
+		List.addNodeBack(i);
 	}
+	///_________________________________________________________________________________
+
+	auto t2 = chrono::high_resolution_clock::now();
+	auto time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
+
+	List.display();
 
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
