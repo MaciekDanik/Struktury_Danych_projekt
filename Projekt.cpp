@@ -51,17 +51,8 @@ void printTree(string sp, string sn, AVLNode<T>* v)
 
 int main()
 {
-	cr = " ";
-	cl = " ";
-	cp = " ";
-	cr[0] = 218;
-	cl[0] = 192;
-	cp[0] = 179;
-	cr[1] = 196;
-	cl[1] = 196;
-
 	Queue<int> queue;
-	TwoWayList<float> List;
+	TwoWayList<int> List;
 	lista_jednokierunkowa<float> OneWayList;
 	AVLTree<int> drzewo;
 
@@ -74,8 +65,7 @@ int main()
 	drzewo.insertNode(8);
 	drzewo.insertNode(9);
 
-	AVLNode<int>* del = drzewo.findNode(drzewo.getRoot(), 7);
-	drzewo.removeNode(del);
+	drzewo.removeNode(drzewo.getRoot(), 7);
 	system("pause");
 
 	printTree("", "", drzewo.getRoot());
@@ -117,7 +107,7 @@ int main()
 
 	//cout << "root: " << drzewo.getRoot()->getValue() << endl;
 
-	//for (float i = 1.0; i <= 6.0; i = i + 0.5)
+	//for (int i = 1; i <= 10; i++)
 	//{
 	//	//queue.addNodeBack(i);
 	//	List.addNodeBack(i);

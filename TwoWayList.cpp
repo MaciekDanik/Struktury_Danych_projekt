@@ -36,32 +36,32 @@ void TwoWayList<T>::addNodeFront(T val)
 template<class T>
 void TwoWayList<T>::addNodeBack(T* tablica)
 {
-	int val1=0;
-    cout<<"Ile liczb chesz umiescic na liscie?"<<endl;
-    cin>>val1;
-    auto t1=chrono::high_resolution_clock::now();
-    for(int i=0; i<val1; i++)
-    {
-        T val=tablica[i];
-        TwoWayListNode<T>* newNode = new TwoWayListNode<T>;
-        newNode->setNext(nullptr);
-        newNode->setValue(val);
+	int val1 = 0;
+	cout << "Ile liczb chesz umiescic na liscie?" << endl;
+	cin >> val1;
+	auto t1 = chrono::high_resolution_clock::now();
+	for (int i = 0; i < val1; i++)
+	{
+		T val = tablica[i];
+		TwoWayListNode<T>* newNode = new TwoWayListNode<T>;
+		newNode->setNext(nullptr);
+		newNode->setValue(val);
 
-        if (!head)
-        {
-            head = newNode;
-            tail = newNode;
-        }
-        else
-        {
-            tail->setNext(newNode);
-            newNode->setPrev(tail);
-            tail = newNode;
-        }
-    }
-    auto t2=chrono::high_resolution_clock::now();
-    auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
-    cout<<"Czas dodawania: "<<time.count()*1e-9<<" sekundy"<<endl;
+		if (!head)
+		{
+			head = newNode;
+			tail = newNode;
+		}
+		else
+		{
+			tail->setNext(newNode);
+			newNode->setPrev(tail);
+			tail = newNode;
+		}
+	}
+	auto t2 = chrono::high_resolution_clock::now();
+	auto time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
 }
 
 template<class T>
@@ -106,6 +106,70 @@ void TwoWayList<T>::delNodeAtPosition(int Pos)
 			delete del;
 		}
 	}
+}
+
+template<class T>
+TwoWayListNode<T>* TwoWayList<T>::findNode(TwoWayListNode<T>* node, T val)
+{
+	TwoWayListNode<T>* first = head;
+	TwoWayListNode<T>* last = tail;
+
+	if (first->getValue() == val || last->getValue() == val)
+	{
+		if (first->getValue() == val)
+		{
+			return first;
+		}
+		else
+		{
+			return last;
+		}
+	}
+	else
+	{
+		first = first->getNext();
+		last = last->getPrev();
+	}
+}
+
+template<class T>
+TwoWayListNode<T>* TwoWayList<T>::Predecesor(TwoWayListNode<T>* node)
+{
+	TwoWayListNode<T>* tmpNode = head;
+	TwoWayListNode<T>* foundNode = head;
+	if (node == nullptr)
+	{
+		return node;
+	}
+	while (tmpNode->getNext())
+	{
+		if (tmpNode->getValue() < node->getValue() && tmpNode->getValue() > foundNode->getValue())
+		{
+			foundNode = tmpNode;
+		}
+		tmpNode = tmpNode->getNext();
+	}
+	return foundNode;
+}
+
+template<class T>
+TwoWayListNode<T>* TwoWayList<T>::Succesor(TwoWayListNode<T>* node)
+{
+	TwoWayListNode<T>* tmpNode = head;
+	TwoWayListNode<T>* foundNode = head;
+	if (node == nullptr)
+	{
+		return node;
+	}
+	while (tmpNode->getNext())
+	{
+		if (tmpNode->getValue() > node->getValue() && tmpNode->getValue() < foundNode->getValue())
+		{
+			foundNode = tmpNode;
+		}
+		tmpNode = tmpNode->getNext();
+	}
+	return foundNode;
 }
 
 template<class T>

@@ -447,8 +447,43 @@ void AVLTree<T>::insertNode(T val)
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
+AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode, T delNodeValue)
 {
+	//if (node == nullptr)
+	//{
+	//	return node;
+	//}
+
+	//if (delNodeValue <= node->getValue())
+	//{
+	//	node->setLeftSon(removeNode(node->getLeftSon(), delNodeValue));
+	//}
+	//else if (delNodeValue > node->getValue())
+	//{
+	//	node->setRightSon(removeNode(node->getRightSon(), delNodeValue));
+	//}
+	//else if (node->getLeftSon() == nullptr && node->getRightSon() == nullptr)
+	//{
+	//	node = nullptr;
+	//}
+	//else if (node->getLeftSon() == nullptr)
+	//{
+	//	node = node->getRightSon();
+	//}
+	//else if (node->getRightSon() == nullptr)
+	//{
+	//	node = node->getLeftSon();
+	//}
+	//else
+	//{
+	//	AVLNode<T>* tmpNode = Succesor(node);
+	//	node->setValue(tmpNode->getValue());
+
+	//	node->setRightSon(removeNode(node->getRightSon(), delNodeValue));
+	//}
+
+	//return node;
+
 	AVLNode<T>* tmpNode1;
 	AVLNode<T>* tmpNode2;
 	AVLNode<T>* tmpNode3;
@@ -456,7 +491,7 @@ AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 
 	if ((delNode->getLeftSon() != nullptr) && (delNode->getRightSon() != nullptr))
 	{
-		tmpNode1 = removeNode(Predecesor(delNode));
+		tmpNode1 = removeNode(Predecesor(delNode), delNodeValue);
 		tangeld = false;
 	}
 	else

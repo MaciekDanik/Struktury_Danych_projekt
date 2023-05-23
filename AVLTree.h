@@ -28,7 +28,7 @@ public:
 	AVLNode<T>* Succesor(AVLNode<T>* node); // zwraca nastêpcê wêz³a node
 	AVLNode<T>* findNode(AVLNode<T>* node, T val); //szuka wêz³a o zadanej wartoœci val
 	void insertNode(T val); //wstawia wêze³ o wartoœci val do drzewa
-	AVLNode<T>* removeNode(AVLNode<T>* delNode); //usuwa wêze³ podany jako del
+	AVLNode<T>* removeNode(AVLNode<T>* node, T delNodeValue); //usuwa wêze³ podany jako del
 };
 
 #endif // !AVLTREE_H
