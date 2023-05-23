@@ -91,14 +91,18 @@ AVLNode<T>* AVLTree<T>::Succesor(AVLNode<T>* node)
 	{
 		return node;
 	}
-
-	if (node->getRightSon() != nullptr)
+	else if (node >= maxValue(root))
+	{
+		return nullptr;
+	}
+	else if (node->getRightSon() != nullptr)
 	{
 		return minValue(node->getRightSon());
 	}
 	else
 	{
 		tmpNode = node->getParent();
+
 		while (tmpNode != nullptr && node == tmpNode->getRightSon())
 		{
 			node = tmpNode;
@@ -452,41 +456,6 @@ void AVLTree<T>::insertNode(T val)
 template<class T>
 AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 {
-	//if (node == nullptr)
-	//{
-	//	return node;
-	//}
-
-	//if (delNodeValue <= node->getValue())
-	//{
-	//	node->setLeftSon(removeNode(node->getLeftSon(), delNodeValue));
-	//}
-	//else if (delNodeValue > node->getValue())
-	//{
-	//	node->setRightSon(removeNode(node->getRightSon(), delNodeValue));
-	//}
-	//else if (node->getLeftSon() == nullptr && node->getRightSon() == nullptr)
-	//{
-	//	node = nullptr;
-	//}
-	//else if (node->getLeftSon() == nullptr)
-	//{
-	//	node = node->getRightSon();
-	//}
-	//else if (node->getRightSon() == nullptr)
-	//{
-	//	node = node->getLeftSon();
-	//}
-	//else
-	//{
-	//	AVLNode<T>* tmpNode = Succesor(node);
-	//	node->setValue(tmpNode->getValue());
-
-	//	node->setRightSon(removeNode(node->getRightSon(), delNodeValue));
-	//}
-
-	//return node;
-
 	AVLNode<T>* tmpNode1;
 	AVLNode<T>* tmpNode2;
 	AVLNode<T>* tmpNode3;
@@ -628,6 +597,14 @@ AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 	}
 
 	return delNode;
+}
+
+template<class T>
+void AVLTree<T>::deleteTree(AVLNode<T>* del)
+{
+	deleteTree(del->getLeftSon());
+	deleteTree(del->getRightSon());
+	delete del;
 }
 
 template class AVLTree<int>;

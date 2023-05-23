@@ -29,6 +29,7 @@ public:
 	AVLNode<T>* findNode(AVLNode<T>* node, T val); //szuka wêz³a o zadanej wartoœci val
 	void insertNode(T val); //wstawia wêze³ o wartoœci val do drzewa
 	AVLNode<T>* removeNode(AVLNode<T>* node); //usuwa wêze³ podany jako del
+	void deleteTree(AVLNode<T>* del);
 };
 
 #endif // !AVLTREE_H
