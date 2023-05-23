@@ -58,17 +58,18 @@ int main()
 
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
-	drzewo.insertNode(7);
+	drzewo.insertNode(11);
 	drzewo.insertNode(5);
 	drzewo.insertNode(2);
 	drzewo.insertNode(13);
 	drzewo.insertNode(8);
 	drzewo.insertNode(9);
+	//	cout << drzewo.Predecesor(drzewo.findNode(drzewo.getRoot(), 2))->getValue() << endl;
 
-	drzewo.removeNode(drzewo.getRoot(), 7);
+	drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
 	system("pause");
 
-	printTree("", "", drzewo.getRoot());
+	//printTree("", "", drzewo.getRoot());
 	//Wczytywanie danych do pomiaru czasu ->
 	 /*TwoWayList<int> czas_int;
 	 TwoWayList<float> czas_float;

@@ -35,7 +35,7 @@ AVLNode<T>* AVLTree<T>::minValue(AVLNode<T>* node)
 		node = node->getLeftSon();
 	}
 
-	return root;
+	return node;
 }
 
 template<class T>
@@ -51,7 +51,7 @@ AVLNode<T>* AVLTree<T>::maxValue(AVLNode<T>* node)
 		node = node->getRightSon();
 	}
 
-	return root;
+	return node;
 }
 
 template<class T>
@@ -62,8 +62,11 @@ AVLNode<T>* AVLTree<T>::Predecesor(AVLNode<T>* node)
 	{
 		return node;
 	}
-
-	if (node->getLeftSon() != nullptr)
+	else if (node == minValue(root))
+	{
+		return nullptr;
+	}
+	else if (node->getLeftSon() != nullptr)
 	{
 		return maxValue(node->getLeftSon());
 	}
@@ -447,7 +450,7 @@ void AVLTree<T>::insertNode(T val)
 }
 
 template<class T>
-AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode, T delNodeValue)
+AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 {
 	//if (node == nullptr)
 	//{
@@ -487,11 +490,13 @@ AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode, T delNodeValue)
 	AVLNode<T>* tmpNode1;
 	AVLNode<T>* tmpNode2;
 	AVLNode<T>* tmpNode3;
+	AVLNode<T>* tmpNode4;
 	bool tangeld; // zagnie¿dzenie
 
 	if ((delNode->getLeftSon() != nullptr) && (delNode->getRightSon() != nullptr))
 	{
-		tmpNode1 = removeNode(Predecesor(delNode), delNodeValue);
+		tmpNode4 = Predecesor(delNode);
+		tmpNode1 = removeNode(tmpNode4);
 		tangeld = false;
 	}
 	else
