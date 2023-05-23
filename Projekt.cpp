@@ -56,6 +56,36 @@ int main()
 	lista_jednokierunkowa<float> OneWayList;
 	AVLTree<int> drzewo;
 
+	int* tablica = new int[1000000];
+	float* tablica1 = new float[1000000];
+	const int DataQuantity = 100;
+
+	fstream calkowite;
+	calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out | ios::app);
+	string linia;
+	int licznik = 0;
+	while (getline(calkowite, linia))
+	{
+		tablica[licznik] = stoi(linia);
+		licznik++;
+	}
+	calkowite.close();
+	fstream zmiennoprzecinkowe;
+	zmiennoprzecinkowe.open("C:\\Users\\Legion\\Desktop\\zmiennoprzecinkowe.txt", ios::in | ios::out | ios::app);
+	string linia1;
+	int licznik1 = 0;
+	while (getline(zmiennoprzecinkowe, linia1))
+	{
+		tablica1[licznik1] = stof(linia1);
+		licznik1++;
+	}
+	zmiennoprzecinkowe.close();
+
+	for (int i = 0; i < DataQuantity; i++)
+	{
+		//tutaj dodawanie
+	}
+
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
 	drzewo.insertNode(11);
@@ -69,7 +99,6 @@ int main()
 	drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
 	system("pause");
 
-	//printTree("", "", drzewo.getRoot());
 	//Wczytywanie danych do pomiaru czasu ->
 	 /*TwoWayList<int> czas_int;
 	 TwoWayList<float> czas_float;
