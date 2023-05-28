@@ -58,7 +58,7 @@ int main()
 	for (int i = 0; i < DataQuantity; i++)
 	{
 		//tutaj dodawanie
-		List.addNodeBack(i);
+		//List.addNodeBack(i);
 	}
 	///_________________________________________________________________________________
 
@@ -66,9 +66,7 @@ int main()
 	auto time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
 	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
 
-	List.display();
-	List.delNodeWithValue(5);
-	List.display();
+	List.display();//do testów
 
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
@@ -80,7 +78,8 @@ int main()
 	drzewo.insertNode(9);
 	//	cout << drzewo.Predecesor(drzewo.findNode(drzewo.getRoot(), 2))->getValue() << endl;
 
-	drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
+	//drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
+	drzewo.deleteTree(drzewo.getRoot());
 	system("pause");
 
 	//Wczytywanie danych do pomiaru czasu ->

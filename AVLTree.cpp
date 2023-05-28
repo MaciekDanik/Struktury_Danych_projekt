@@ -602,9 +602,10 @@ AVLNode<T>* AVLTree<T>::removeNode(AVLNode<T>* delNode)
 template<class T>
 void AVLTree<T>::deleteTree(AVLNode<T>* del)
 {
-	deleteTree(del->getLeftSon());
-	deleteTree(del->getRightSon());
-	delete del;
+	while (root != nullptr)
+	{
+		removeNode(root);
+	}
 }
 
 template class AVLTree<int>;
