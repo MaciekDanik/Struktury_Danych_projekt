@@ -164,6 +164,22 @@ TwoWayListNode<T>* TwoWayList<T>::Succesor(TwoWayListNode<T>* node)
 template<class T>
 void TwoWayList<T>::delNodeWithValue(T val)
 {
+	TwoWayListNode<T>* nodePtr = head;
+	if (head == nullptr)
+	{
+		return;
+	}
+	while (nodePtr->getNext())
+	{
+		if (nodePtr->getValue() == val)
+		{
+			nodePtr->getPrev()->setNext(nodePtr->getNext());
+			nodePtr->getNext()->setPrev(nodePtr->getPrev());
+			delete nodePtr;
+			return;
+		}
+		nodePtr = nodePtr->getNext();
+	}
 }
 
 template<class T>

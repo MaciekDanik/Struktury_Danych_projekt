@@ -21,34 +21,6 @@ int randomNum(int maxWartosc)
 	return (rand() % maxWartosc);
 }
 
-string cr = " ", cl = " ", cp = " ";
-
-template <class T>
-void printTree(string sp, string sn, AVLNode<T>* v)
-{
-	string s;
-
-	if (v)
-	{
-		s = sp;
-		if (sn == cr)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cr, v->getRightSon());
-
-		s = s.substr(0, sp.length() - 2);
-		cout << s << sn << v->getValue() << ":" << v->getBF() << endl;
-
-		s = sp;
-		if (sn == cl)
-		{
-			s[s.length() - 2] = ' ';
-		}
-		printTree(s + cp, cl, v->getLeftSon());
-	}
-}
-
 int main()
 {
 	Queue<int> queue;
@@ -58,7 +30,7 @@ int main()
 
 	int* tablica = new int[1000000];
 	float* tablica1 = new float[1000000];
-	const int DataQuantity = 30; //iloœæ danych
+	const int DataQuantity = 10; //iloœæ danych
 
 	fstream calkowite;
 	calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out | ios::app);
@@ -94,6 +66,8 @@ int main()
 	auto time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
 	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
 
+	List.display();
+	List.delNodeWithValue(5);
 	List.display();
 
 	drzewo.insertNode(3);
