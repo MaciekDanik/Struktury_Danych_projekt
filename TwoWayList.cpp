@@ -200,6 +200,22 @@ void TwoWayList<T>::display()
 	}
 	cout << endl;
 }
+template <class T>
+void TwoWayList<T>::delete_allelements()
+{
+    //kwota<T>* temp=temp->nastepna;
+auto t1=chrono::high_resolution_clock::now();
+  while(head !=nullptr)
+  {
+      TwoWayListNode<T>* tep=head->getNext();
+      delete head;
+      head=tep;
+  }
+  auto t2=chrono::high_resolution_clock::now();
+auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+  cout<<"Czas usuwania: "<<time.count()*1e-9<<" sekundy"<<endl;
+}
+
 
 template class TwoWayList<int>;
 template class TwoWayList<double>;
