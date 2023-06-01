@@ -18,6 +18,7 @@ public:
 	void delNodeAtPosition(int Pos); // usuwa element z zadanej pozycji
 	void delNodeWithValue(T val); //usuwa elemet o danej wartości
 	void display(); //wyświetla listę
+	void delete_allelements();//usuwa całą obecną zawartość listy
 	TwoWayListNode<T>* findNode(TwoWayListNode<T>* node, T val);
 	TwoWayListNode<T>* Predecesor(TwoWayListNode<T>* node);
 	TwoWayListNode<T>* Succesor(TwoWayListNode<T>* node);
