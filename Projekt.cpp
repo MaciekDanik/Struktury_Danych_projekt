@@ -23,14 +23,15 @@ int randomNum(int maxWartosc)
 
 int main()
 {
-	Queue<int> queue;
+	Queue<int> queue_int;
+	Queue<float> queue_float
 	TwoWayList<int> List;
 	lista_jednokierunkowa<float> OneWayList;
 	AVLTree<int> drzewo;
 
 	int* tablica = new int[1000000];
 	float* tablica1 = new float[1000000];
-	const int DataQuantity = 10; //iloœæ danych
+	const int DataQuantity = 10; //iloÅ“Ã¦ danych
 
 	fstream calkowite;
 	calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out | ios::app);
@@ -66,7 +67,19 @@ int main()
 	auto time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
 	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
 
-	List.display();//do testów
+	List.display();//do testÃ³w
+	
+	auto t3 = chrono::high_resolution_clock::now();
+	///_________________________________________________________________________________
+	for (int i = 0; i < DataQuantity; i++)
+	{
+            queue_int.addNodeBack(tablica[i]);
+	}
+	///_________________________________________________________________________________
+
+	auto t4 = chrono::high_resolution_clock::now();
+	auto time1 = chrono::duration_cast<chrono::nanoseconds>(t4 - t3);
+	cout << "Czas dodawania: " << time1.count() * 1e-9 << " sekundy" << endl;
 
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
@@ -82,41 +95,6 @@ int main()
 	drzewo.deleteTree(drzewo.getRoot());
 	system("pause");
 
-	//Wczytywanie danych do pomiaru czasu ->
-	 /*TwoWayList<int> czas_int;
-	 TwoWayList<float> czas_float;
-	 int* tablica=new int[1000000];
-	 float* tablica1=new float[1000000];
-	 fstream calkowite;
-	 calkowite.open("C:\\Users\\Legion\\Desktop\\calkowite.txt", ios::in | ios::out |ios::app);
-	 string linia;
-	 int licznik=0;
-	 while(getline(calkowite,linia))
-	 {
-		tablica[licznik]=stoi(linia);
-		licznik++;
-	 }
-	 calkowite.close();
-	fstream zmiennoprzecinkowe;
-	 zmiennoprzecinkowe.open("C:\\Users\\Legion\\Desktop\\zmiennoprzecinkowe.txt", ios::in | ios::out |ios::app);
-	 string linia1;
-	 int licznik1=0;
-	 while(getline(zmiennoprzecinkowe,linia1))
-	 {
-		tablica1[licznik1]=stof(linia1);
-		licznik1++;
-	 }
-	 zmiennoprzecinkowe.close();
-
-	cout<<"Chcesz pracowac na danych int czy float?"<<endl;
-	cout<<"1. int, 2. float"<<endl;
-	int wybur;
-	cin>>wybur;
-	if(wybur==1)
-	czas_int.addNodeBack(tablica);
-	if(wybur==2)
-	czas_float.addNodeBack(tablica1);
-	*/
 
 	//cout << "root: " << drzewo.getRoot()->getValue() << endl;
 
