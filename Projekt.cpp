@@ -24,7 +24,7 @@ int randomNum(int maxWartosc)
 int main()
 {
 	Queue<int> queue_int;
-	Queue<float> queue_float
+	Queue<float> queue_float;
 	TwoWayList<int> List;
 	lista_jednokierunkowa<float> OneWayList;
 	AVLTree<int> drzewo;
@@ -68,11 +68,13 @@ int main()
 	cout << "Czas dodawania: " << time.count() * 1e-9 << " sekundy" << endl;
 
 	List.display();//do testów
-	
+	/*
+	//dodawanie do kolejki ->
 	auto t3 = chrono::high_resolution_clock::now();
 	///_________________________________________________________________________________
 	for (int i = 0; i < DataQuantity; i++)
 	{
+	    //queue_float.addNodeBack(tablica1[i]);
             queue_int.addNodeBack(tablica[i]);
 	}
 	///_________________________________________________________________________________
@@ -80,6 +82,17 @@ int main()
 	auto t4 = chrono::high_resolution_clock::now();
 	auto time1 = chrono::duration_cast<chrono::nanoseconds>(t4 - t3);
 	cout << "Czas dodawania: " << time1.count() * 1e-9 << " sekundy" << endl;
+	// Usuwanie z kolejki ->
+	auto t5=chrono::high_resolution_clock::now();
+        for(int i=0; i<DataQuantity;i++)
+        {
+            queue_int.delFirstNode();
+	    //queue_float.delFirstNode();
+        }
+        auto t6=chrono::high_resolution_clock::now();
+        auto time2 =chrono::duration_cast<chrono::nanoseconds>(t6 - t5);
+        cout<<"Czas usuwania: "<<time2.count()*1e-9<<" sekundy"<<endl;
+	*/
 
 	drzewo.insertNode(3);
 	drzewo.insertNode(7);
