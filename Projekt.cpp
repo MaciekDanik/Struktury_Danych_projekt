@@ -127,4 +127,59 @@ int main()
 	//queue.display();
 	//queue.delFirstNode();
 	//queue.display();
+	
+//Szukanie na nastepnika/poprzednika na liscie dwu-kier:
+	
+/*
+TwoWayListNode<int>* tep;
+TwoWayListNode<int>* znal;
+int val=tablica[1000000-1];
+auto t1=chrono::high_resolution_clock::now();
+znal=czas_int.findNode(tep,val);
+auto t2=chrono::high_resolution_clock::now();
+auto time =chrono::duration_cast<chrono::nanoseconds>(t2 - t1);
+cout<<"Czas szukania: "<<time.count()<<" sekundy"<<endl;
+int val1=znal->getValue();
+cout<<"To powinna byc wartosc: "<<endl;
+cout<<val1<<endl;
+TwoWayListNode<int>* znal1;
+auto t3=chrono::high_resolution_clock::now();
+znal1=czas_int.Succesor(znal);
+auto t4=chrono::high_resolution_clock::now();
+auto time1 =chrono::duration_cast<chrono::nanoseconds>(t4 - t3);
+cout<<"Czas szukania nastepnika: "<<time1.count()<<" sekundy"<<endl;
+int val2=znal1->getValue();
+cout<<"To powinna byc wartosc nastepnika: "<<endl;
+cout<<val2<<endl;
+//poprzednik
+TwoWayListNode<int>* znal2;
+auto t5=chrono::high_resolution_clock::now();
+znal2=czas_int.Predecesor(znal);
+auto t6=chrono::high_resolution_clock::now();
+auto time2 =chrono::duration_cast<chrono::nanoseconds>(t6 - t5);
+cout<<"Czas szukania poprzednika: "<<time2.count()<<" sekundy"<<endl;
+int val3=znal2->getValue();
+cout<<"To powinna byc wartosc poprzednika: "<<endl;
+cout<<val3;
+*/
+//Szukanie na nastepnika/poprzednika na AVL:
+	/*
+   AVLNode<int>* znal;
+   int val=tablica[300000];
+   znal=czas_int.findNode(czas_int.getRoot(),val);
+   int val1=znal->getValue();
+   cout<<"To powinna byc wartosc: "<<endl;
+   cout<<val1<<endl;
+   AVLNode<int>* znal1;
+   auto t3=chrono::high_resolution_clock::now();
+   znal1=czas_int.Succesor(znal);
+   auto t4=chrono::high_resolution_clock::now();
+   auto time1 =chrono::duration_cast<chrono::nanoseconds>(t4 - t3);
+   cout<<"Czas szukania nastepnika: "<<time1.count()<<" sekundy."<<endl;
+   cout<<"To powinna byc wartosc nastepnika: "<<endl;
+   int val2=0;
+   val2=znal1->getValue();
+   cout<<val2<<endl;
+	*/
+	
 }
