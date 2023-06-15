@@ -15,7 +15,7 @@ public:
 	Queue(); //konstruktor kolejki
 	~Queue(); //destruktor kolejki
 	void addNodeBack(T val); //dodajê wêze³ na koñcu kolejki
-	void delFirstNode(); // usuwa element z poczatku kolejki
+	QueueNode<T>* delFirstNode(); // usuwa element z poczatku kolejki
 	void display(); //wyœwietla ca³¹ kolejkê
 };
 

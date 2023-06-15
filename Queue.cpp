@@ -34,19 +34,21 @@ void Queue<T>::addNodeBack(T val)
 }
 
 template <class T>
-void Queue<T>::delFirstNode()
+QueueNode<T>* Queue<T>::delFirstNode()
 {
 	QueueNode<T>* nodePtr;
 
 	if (head == nullptr)
 	{
-		return;
+		return nullptr;
 	}
 	else
 	{
+		QueueNode<T>* tmpNode = head;
 		nodePtr = head->getNext();
 		delete head;
 		head = nodePtr;
+		return tmpNode;
 	}
 }
 

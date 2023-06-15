@@ -91,7 +91,7 @@ AVLNode<T>* AVLTree<T>::Succesor(AVLNode<T>* node)
 	{
 		return node;
 	}
-	else if (node >= maxValue(root))
+	else if (node == maxValue(root))
 	{
 		return nullptr;
 	}

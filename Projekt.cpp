@@ -2,6 +2,7 @@
 #include <chrono>
 #include <fstream>
 #include <sstream>
+#include <time.h>
 #include "QueueNode.h"
 #include "Queue.h"
 #include "TwoWayListNode.h"
@@ -76,8 +77,18 @@ int main()
 	drzewo.insertNode(13);
 	drzewo.insertNode(8);
 	drzewo.insertNode(9);
-	//	cout << drzewo.Predecesor(drzewo.findNode(drzewo.getRoot(), 2))->getValue() << endl;
 
+	clock_t start = clock();
+	cout << start << " clocks" << endl;
+	//cout << drzewo.Predecesor(drzewo.findNode(drzewo.getRoot(), 7))->getValue() << endl;
+
+	cout << drzewo.Succesor(drzewo.findNode(drzewo.getRoot(), 3))->getValue() << endl;
+	clock_t stop = clock();
+	clock_t result = stop - start;
+
+	//stop / (CLOCKS_PER_SEC * 1000);
+	cout << stop << " clocks" << endl;
+	cout << result << " clocks" << endl;
 	//drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
 	drzewo.deleteTree(drzewo.getRoot());
 	system("pause");
