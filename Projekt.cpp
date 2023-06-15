@@ -2,6 +2,8 @@
 #include <chrono>
 #include <fstream>
 #include <sstream>
+#include<random>
+#include <algorithm>
 #include <time.h>
 #include "QueueNode.h"
 #include "Queue.h"
@@ -10,6 +12,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <vector>
 #include "lista.h"
 #include "kwota.h"
 #include "AVLNode.h"
@@ -75,8 +78,8 @@ int main()
 	///_________________________________________________________________________________
 	for (int i = 0; i < DataQuantity; i++)
 	{
-	    //queue_float.addNodeBack(tablica1[i]);
-            queue_int.addNodeBack(tablica[i]);
+		//queue_float.addNodeBack(tablica1[i]);
+			queue_int.addNodeBack(tablica[i]);
 	}
 	///_________________________________________________________________________________
 
@@ -85,30 +88,36 @@ int main()
 	cout << "Czas dodawania: " << time1.count() * 1e-9 << " sekundy" << endl;
 	// Usuwanie z kolejki ->
 	auto t5=chrono::high_resolution_clock::now();
-        for(int i=0; i<DataQuantity;i++)
-        {
-            queue_int.delFirstNode();
-	    //queue_float.delFirstNode();
-        }
-        auto t6=chrono::high_resolution_clock::now();
-        auto time2 =chrono::duration_cast<chrono::nanoseconds>(t6 - t5);
-        cout<<"Czas usuwania: "<<time2.count()*1e-9<<" sekundy"<<endl;
+		for(int i=0; i<DataQuantity;i++)
+		{
+			queue_int.delFirstNode();
+		//queue_float.delFirstNode();
+		}
+		auto t6=chrono::high_resolution_clock::now();
+		auto time2 =chrono::duration_cast<chrono::nanoseconds>(t6 - t5);
+		cout<<"Czas usuwania: "<<time2.count()*1e-9<<" sekundy"<<endl;
 	*/
 
-	drzewo.insertNode(3);
-	drzewo.insertNode(7);
-	drzewo.insertNode(11);
-	drzewo.insertNode(5);
-	drzewo.insertNode(2);
-	drzewo.insertNode(13);
-	drzewo.insertNode(8);
-	drzewo.insertNode(9);
+	vector<unsigned int> dane;
+	for (int i = 0; i < 10000000; i++)
+	{
+		dane.push_back(i);
+	}
+
+	auto rng = default_random_engine{};
+	shuffle(dane.begin(), dane.end(), rng);
+
+	for (auto x : dane)
+	{
+		drzewo.insertNode(x);
+	}
 
 	clock_t start = clock();
 	cout << start << " clocks" << endl;
 	//cout << drzewo.Predecesor(drzewo.findNode(drzewo.getRoot(), 7))->getValue() << endl;
-
-	cout << drzewo.Succesor(drzewo.findNode(drzewo.getRoot(), 3))->getValue() << endl;
+	AVLNode<int>* temp = drzewo.findNode(drzewo.getRoot(), 555555);
+	cout << temp->getValue() << endl;
+	//cout << drzewo.Succesor(drzewo.findNode(drzewo.getRoot(), temp->getValue()))->getValue() << endl;
 	clock_t stop = clock();
 	clock_t result = stop - start;
 
@@ -118,7 +127,6 @@ int main()
 	//drzewo.removeNode(drzewo.findNode(drzewo.getRoot(), 7));
 	drzewo.deleteTree(drzewo.getRoot());
 	system("pause");
-
 
 	//cout << "root: " << drzewo.getRoot()->getValue() << endl;
 
@@ -138,9 +146,9 @@ int main()
 	//queue.display();
 	//queue.delFirstNode();
 	//queue.display();
-	
+
 //Szukanie na nastepnika/poprzednika na liscie dwu-kier:
-	
+
 /*
 TwoWayListNode<int>* tep;
 TwoWayListNode<int>* znal;
@@ -192,5 +200,4 @@ cout<<val3;
    val2=znal1->getValue();
    cout<<val2<<endl;
 	*/
-	
 }
