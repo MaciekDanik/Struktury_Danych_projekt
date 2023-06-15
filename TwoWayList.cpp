@@ -102,7 +102,8 @@ TwoWayListNode<T>* TwoWayList<T>::findNode(TwoWayListNode<T>* node, T val)
 {
 	TwoWayListNode<T>* first = head;
 	TwoWayListNode<T>* last = tail;
-
+for(;;)
+{
 	if (first->getValue() == val || last->getValue() == val)
 	{
 		if (first->getValue() == val)
@@ -119,6 +120,7 @@ TwoWayListNode<T>* TwoWayList<T>::findNode(TwoWayListNode<T>* node, T val)
 		first = first->getNext();
 		last = last->getPrev();
 	}
+}
 }
 
 template<class T>
